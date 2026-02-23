@@ -141,7 +141,12 @@ JWT_SECRET=your-random-jwt-secret-at-least-32-chars-long
 
 # Blockchain Configuration (for Hardhat local network)
 RPC_URL=http://127.0.0.1:8545
-PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+
+# PRIVATE_KEY: Use Hardhat's first test account for local development
+# Get this from the Hardhat node terminal output when you run: npx hardhat node
+# It will show Account #0 with its private key
+# For production: generate a new secure private key
+PRIVATE_KEY=your-hardhat-test-account-private-key-here
 
 # Smart Contract Address
 # Leave empty initially - will be filled after deploying contract
@@ -155,8 +160,8 @@ CONTRACT_ADDRESS=
   ```bash
   node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
   ```
-- **PRIVATE_KEY**: The default value is Hardhat's first test account private key (safe for local development only)
-- **CONTRACT_ADDRESS**: Leave empty for now; you'll add this after deploying the smart contract
+- **PRIVATE_KEY**: Use the private key from Hardhat's test Account #0 (shown in terminal when you run `npx hardhat node`). This is only for local development. For production deployments, generate a new secure private key.
+- **CONTRACT_ADDRESS**: Leave empty for now; you'll add this after deploying the smart contract.
 
 ### 4.2 Frontend Environment (`.env`)
 
@@ -209,10 +214,10 @@ npx hardhat run scripts/deploy.js --network localhost
 
 You'll see output like:
 ```
-ChainOfCustody deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+ChainOfCustody deployed to: 0x...
 ```
 
-**Copy this contract address!**
+**Copy this contract address from your terminal output!**
 
 ### 5.3 Update Environment Variables with Contract Address
 
@@ -220,12 +225,12 @@ Update both `.env` files with the deployed contract address:
 
 **`backend/.env`:**
 ```env
-CONTRACT_ADDRESS=0x5FbDB2315678afecb367f032d93F642f64180aa3
+CONTRACT_ADDRESS=<paste-your-deployed-contract-address-here>
 ```
 
 **`frontend/.env`:**
 ```env
-VITE_CONTRACT_ADDRESS=0x5FbDB2315678afecb367f032d93F642f64180aa3
+VITE_CONTRACT_ADDRESS=<paste-your-deployed-contract-address-here>
 ```
 
 ---
@@ -253,10 +258,16 @@ To use the test accounts from Hardhat:
 3. Paste one of the private keys from Hardhat node output (Account #0 is recommended)
 4. Click **"Import"**
 
-**Default Account #0 Private Key:**
+**Getting Account #0 Private Key:**
+
+When you run `npx hardhat node`, look for the first account in the terminal output:
+
 ```
-0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+Account #0: 0x...
+Private Key: 0x...
 ```
+
+Copy the Private Key shown in your terminal and use it to import the account into MetaMask.
 
 ### 6.3 Switch to Hardhat Network
 

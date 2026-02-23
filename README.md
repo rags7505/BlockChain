@@ -595,7 +595,7 @@ VITE_BACKEND_URL=http://localhost:5000
 VITE_CONTRACT_ADDRESS=deployed-contract-address
 ```
 
-**📖 For detailed setup with Supabase configuration, database migrations, MetaMask setup, and troubleshooting, see [SETUP.md](SETUP.md)**
+**For detailed setup with Supabase configuration, database migrations, MetaMask setup, and troubleshooting, see [SETUP.md](SETUP.md)**
 
 ---
 
