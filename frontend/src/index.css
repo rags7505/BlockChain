@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Forensic Blockchain Design System */
+@layer base {
+  :root {
+    /* Dark forensic theme */
+    --background: 222 47% 6%;
+    --foreground: 210 40% 96%;
+
+    --card: 222 47% 9%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 47% 9%;
+    --popover-foreground: 210 40% 96%;
+
+    /* Cyan/Teal for blockchain elements */
+    --primary: 187 85% 53%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 222 30% 14%;
+    --secondary-foreground: 210 40% 90%;
+
+    --muted: 222 30% 18%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 187 70% 40%;
+    --accent-foreground: 210 40% 98%;
+
+    /* Verification states */
+    --success: 160 84% 39%;
+    --success-foreground: 160 84% 98%;
+    
+    --warning: 38 92% 50%;
+    --warning-foreground: 38 92% 10%;
+    
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 72% 98%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 14%;
+    --ring: 187 85% 53%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --gradient-forensic: linear-gradient(135deg, hsl(222 47% 9%) 0%, hsl(222 47% 6%) 100%);
+    --gradient-cyber: linear-gradient(135deg, hsl(187 85% 53% / 0.15) 0%, hsl(160 84% 39% / 0.1) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(222 30% 14%) 0%, hsl(222 47% 9%) 100%);
+    
+    --shadow-glow: 0 0 40px hsl(187 85% 53% / 0.15);
+    --shadow-card: 0 4px 24px hsl(222 47% 2% / 0.5);
+    --shadow-elevated: 0 8px 32px hsl(222 47% 2% / 0.6);
+
+    /* Sidebar */
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 210 40% 90%;
+    --sidebar-primary: 187 85% 53%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 222 30% 14%;
+    --sidebar-accent-foreground: 210 40% 90%;
+    --sidebar-border: 222 30% 15%;
+    --sidebar-ring: 187 85% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+}
+
+@layer components {
+  /* Forensic card styles */
+  .forensic-card {
+    @apply relative overflow-hidden rounded-xl border border-border/50;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .forensic-card::before {
+    content: '';
+    @apply absolute inset-0 opacity-30 pointer-events-none;
+    background: 
+      linear-gradient(90deg, transparent 49.5%, hsl(var(--border)) 49.5%, hsl(var(--border)) 50.5%, transparent 50.5%),
+      linear-gradient(0deg, transparent 49.5%, hsl(var(--border)) 49.5%, hsl(var(--border)) 50.5%, transparent 50.5%);
+    background-size: 60px 60px;
+  }
+
+  /* Cyber glow effect */
+  .cyber-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Timeline connector */
+  .timeline-connector {
+    @apply absolute left-4 top-10 w-0.5 h-full -translate-x-1/2;
+    background: linear-gradient(180deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.2) 100%);
+  }
+
+  /* Hash display */
+  .hash-display {
+    @apply font-mono text-xs tracking-wider text-muted-foreground break-all;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Verification badge animations */
+  .verification-pulse {
+    animation: verifyPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes verifyPulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 hsl(var(--success) / 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 12px hsl(var(--success) / 0);
+    }
+  }
+
+  .tamper-pulse {
+    animation: tamperPulse 1s ease-in-out infinite;
+  }
+
+  @keyframes tamperPulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 hsl(var(--destructive) / 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 12px hsl(var(--destructive) / 0);
+    }
+  }
+
+  /* Loading animation */
+  .blockchain-loading {
+    animation: blockchainPulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes blockchainPulse {
+    0%, 100% {
+      opacity: 0.5;
+      transform: scale(0.95);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Scan line effect */
+  .scan-effect::after {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      hsl(var(--primary) / 0.03) 50%,
+      transparent 100%
+    );
+    animation: scanLine 3s ease-in-out infinite;
+  }
+
+  @keyframes scanLine {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--success)) 100%);
+  }
+
+  .border-gradient {
+    border-image: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--success)) 100%) 1;
+  }
+}
