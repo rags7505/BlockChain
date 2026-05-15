@@ -1,0 +1,18 @@
+# Storage directories - files uploaded by users
+storage/fingerprints/*
+storage/pdfs/*
+storage/images/*
+!storage/fingerprints/.gitkeep
+!storage/pdfs/.gitkeep
+!storage/images/.gitkeep
+
+# Environment variables
+.env
+.env.local
+
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
