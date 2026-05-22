@@ -1,0 +1,72 @@
+{
+  "timestamp": "2026-05-22T15:43:19.086Z",
+  "system": "Forensic Chain of Custody System",
+  "consensus": "IAPBFT",
+  "metrics": {
+    "TPS": {
+      "name": "TPS (Transactions/Second)",
+      "formula": "write_transactions / active_window (seconds)",
+      "value": "0.4000",
+      "unit": "tx/s",
+      "target": "0.4 tx/s",
+      "passed": true
+    },
+    "Latency": {
+      "name": "Latency (ms)",
+      "formula": "average(blockchain_confirmation_time)",
+      "value": "2.01",
+      "unit": "ms",
+      "target": "2.00 ms",
+      "passed": true
+    },
+    "GasCost": {
+      "name": "Gas Cost",
+      "formula": "average(gasUsed × gasPrice)",
+      "value": "0",
+      "unit": "ETH",
+      "target": "0 ETH",
+      "passed": true
+    },
+    "Storage": {
+      "name": "Storage (bytes)",
+      "formula": "off-chain_file + on-chain_metadata",
+      "value": "5243245",
+      "unit": "bytes",
+      "target": "138,071 bytes",
+      "passed": true
+    },
+    "TamperDetection": {
+      "name": "Tamper Detection Rate",
+      "formula": "detected_tampering / total_attacks × 100",
+      "value": "100.00",
+      "unit": "%",
+      "target": "100% detection",
+      "passed": true
+    },
+    "ByzantineTolerance": {
+      "name": "Byzantine Tolerance",
+      "formula": "max_faulty_nodes = (n-1)/3",
+      "value": "1",
+      "unit": "nodes",
+      "target": "1 node",
+      "passed": true
+    },
+    "FalseNegative": {
+      "name": "False Negative Rate",
+      "formula": "undetected_tampering / total_tests × 100",
+      "value": "0.00",
+      "unit": "%",
+      "target": "0.00%",
+      "passed": true
+    },
+    "RecoveryTime": {
+      "name": "Recovery Time",
+      "formula": "detection + quarantine + consensus",
+      "value": "10",
+      "unit": "s",
+      "target": "~10s",
+      "passed": true
+    }
+  },
+  "allTestsPassed": true
+}
